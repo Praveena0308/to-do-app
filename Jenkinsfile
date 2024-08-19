@@ -10,11 +10,8 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    try {
-                        sh "docker build -t todoapp:latest ."
-                    } catch (Exception e) {
-                        error "Docker build failed: ${e.getMessage()}"
-                    }
+                    // Build Docker image with Dockerfile located in 'backend' directory
+                    sh 'docker build -t todoapp:latest -f backend/Dockerfile backend'
                 }
             }
         }
