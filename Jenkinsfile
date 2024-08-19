@@ -32,7 +32,7 @@ pipeline {
                     sh """
                     ssh ec2-user@ec2-18-199-89-217.eu-central-1.compute.amazonaws.com '
                     def dockerCmd = "docker run -p 3080:3080 -d prave987/todoapp:latest"
-                    sshagent(['ec2-server-key']) {
+                    sshagent(['root(server)']) {
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@18-199-89-217 ${dockerCmd}"
 
                     docker run -d --name to-do-app -p 4000:4000 username/todoapp:latest'
