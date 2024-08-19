@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/jaiswaladi246/to-do-app.git'
+                git branch: 'main', url: 'https://github.com/Praveena0308/to-do-app.git'
             }
         }
         stage('Docker Build') {
@@ -17,7 +17,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'your-dockerhub-credentials-id') {
+                    withDockerRegistry(credentialsId: '729bbc83-fdba-45c1-93e2-9ea0344b726c') {
                         sh "docker tag todoapp:latest username/todoapp:latest"
                         sh "docker push username/todoapp:latest"
                     }
