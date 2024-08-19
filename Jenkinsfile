@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Deploy on EC2') {
             steps {
-                sshagent(['your-ec2-ssh-credentials-id']) {
+                sshagent(['18.199.89.217']) {
                     sh """
                     ssh ec2-user@ec2-18-199-89-217.eu-central-1.compute.amazonaws.com '
                     docker stop to-do-app || true &&
