@@ -20,7 +20,7 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: '0c461f4f-be61-4e7b-afd9-7a59111f2171') {
                         sh "docker tag todoapp:latest username/todoapp:latest"
-                        sh "docker push username/todoapp:latest"
+                        sh "docker push prave987/todoapp:latest"
                     }
                 }
             }
