@@ -19,8 +19,9 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', '0c461f4f-be61-4e7b-afd9-7a59111f2171') {
-                        sh "docker tag todoapp:latest username/todoapp:latest"
-                        sh "docker push username/todoapp:latest"
+                        sh 'docker tag todoapp:latest prave987/todoapp:latest'
+                        sh 'docker push prave987/todoapp:latest'
+
                     }
                 }
             }
