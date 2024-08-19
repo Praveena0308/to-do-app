@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment{
-        DOCKERHUB_CREDENTIALS =credentials ('0c461f4f-be61-4e7b-afd9-7a59111f2171')
-    }
 
     stages {
         stage('Git Checkout') {
