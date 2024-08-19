@@ -40,3 +40,23 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            // Actions that run after the pipeline, regardless of success or failure
+            echo 'Cleaning up...'
+            // For example, you might use:
+            // cleanWs() // to clean the workspace
+        }
+        
+        success {
+            // Actions that run if the pipeline succeeds
+            echo 'Pipeline succeeded!'
+        }
+        
+        failure {
+            // Actions that run if the pipeline fails
+            echo 'Pipeline failed.'
+        }
+    }
+}
