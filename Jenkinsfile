@@ -10,7 +10,11 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    sh "docker build -t todoapp:latest ."
+                    try {
+                        sh "docker build -t todoapp:latest ."
+                    } catch (Exception e) {
+                        error "Docker build failed: ${e.getMessage()}"
+                    }
                 }
             }
         }
@@ -28,7 +32,11 @@ pipeline {
             steps {
                 sshagent(['your-ec2-ssh-credentials-id']) {
                     sh """
-                    ssh ec2-user@your-ec2-public-ip 'docker pull username/todoapp:latest && docker run -d --name to-do-app -p 4000:4000 username/todoapp:latest'
+                    ssh ec2-user@ec2-18-199-89-217.eu-central-1.compute.amazonaws.com '
+                    docker stop to-do-app || true &&
+                    docker rm to-do-app || true &&
+                    docker pull username/todoapp:latest &&
+                    docker run -d --name to-do-app -p 4000:4000 username/todoapp:latest'
                     """
                 }
             }
