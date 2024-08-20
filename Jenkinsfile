@@ -21,7 +21,6 @@ pipeline {
                     docker.withRegistry('https://index.docker.io/v1/', 'Docker-cred') {
                         sh 'docker tag todoapp:latest prave987/todoapp:latest'
                         sh 'docker push prave987/todoapp:latest'
-
                     }
                 }
             }
@@ -29,14 +28,13 @@ pipeline {
         stage('Deploy on EC2') {
             steps {
                 script {
-                    echo 'deploying docker image to EC2...'
+                    echo 'Deploying Docker image to EC2...'
                     def dockerCmd = "docker run -p 8080:8080 -d prave987/todoapp:latest"
                     sshagent(['ec2-server-key']) {
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.120.247.63 ${dockerCmd}"
-
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.120.247.63 '${dockerCmd}'"
+                    }
                 }
             }
         }
     }
-}
 }
