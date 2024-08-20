@@ -18,7 +18,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'Docker_cred') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'Docker-cred') {
                         sh 'docker tag todoapp:latest prave987/todoapp:latest'
                         sh 'docker push prave987/todoapp:latest'
 
